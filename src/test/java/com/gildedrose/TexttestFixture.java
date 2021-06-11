@@ -1,6 +1,17 @@
+/**
+ *  Copyright Murex S.A.S., 2003-2021. All Rights Reserved.
+ *
+ *  This software program is proprietary and confidential to Murex S.A.S and its affiliates ("Murex") and, without limiting the generality of the foregoing reservation of rights, shall not be accessed, used, reproduced or distributed without the
+ *  express prior written consent of Murex and subject to the applicable Murex licensing terms. Any modification or removal of this copyright notice is expressly prohibited.
+ */
 package com.gildedrose;
 
 public class TexttestFixture {
+
+    //~ ----------------------------------------------------------------------------------------------------------------
+    //~ Methods
+    //~ ----------------------------------------------------------------------------------------------------------------
+
     public static void main(String[] args) {
         System.out.println("OMGHAI!");
 
@@ -14,11 +25,12 @@ public class TexttestFixture {
                 new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
                 new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
                 // this conjured item does not work properly yet
-                new Item("Conjured Mana Cake", 3, 6) };
+                new Item("Conjured Mana Cake", 3, 6)
+            };
 
         GildedRose app = new GildedRose(items);
 
-        int days = 2;
+        int days = 3;
         if (args.length > 0) {
             days = Integer.parseInt(args[0]) + 1;
         }

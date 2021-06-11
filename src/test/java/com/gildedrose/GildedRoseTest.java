@@ -1,10 +1,20 @@
+/**
+ *  Copyright Murex S.A.S., 2003-2021. All Rights Reserved.
+ *
+ *  This software program is proprietary and confidential to Murex S.A.S and its affiliates ("Murex") and, without limiting the generality of the foregoing reservation of rights, shall not be accessed, used, reproduced or distributed without the
+ *  express prior written consent of Murex and subject to the applicable Murex licensing terms. Any modification or removal of this copyright notice is expressly prohibited.
+ */
 package com.gildedrose;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
+
+    //~ ----------------------------------------------------------------------------------------------------------------
+    //~ Methods
+    //~ ----------------------------------------------------------------------------------------------------------------
 
     @Test
     void RegularItemTest() {
@@ -59,11 +69,12 @@ class GildedRoseTest {
 
     @Test
     void BackstagePassTest() {
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 12, 10),
-                                    new Item("Backstage passes to a TAFKAL80ETC concert", 7, 10),
-                                    new Item("Backstage passes to a TAFKAL80ETC concert", 2, 10),
-                                    new Item("Backstage passes to a TAFKAL80ETC concert", 1, 10)
-                                  };
+        Item[] items = new Item[] {
+                new Item("Backstage passes to a TAFKAL80ETC concert", 12, 10),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 7, 10),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 2, 10),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 1, 10)
+            };
         assertEquals("Backstage passes to a TAFKAL80ETC concert", items[0].name);
         assertEquals(12, items[0].sellIn);
         assertEquals(10, items[0].quality);
@@ -99,4 +110,26 @@ class GildedRoseTest {
         assertEquals(0, items[0].quality);
     }
 
+    @Test
+    void EverythingInsideTest() {
+        Item[] items = new Item[] {
+                new Item("Conjured Mana Cake", 2, 7),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 12, 10),
+                new Item("Sulfuras, Hand of Ragnaros", 2, 3),
+                new Item("Aged Brie", 2, 48),
+                new Item("foo", 2, 3)
+            };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(1, items[0].sellIn);
+        assertEquals(5, items[0].quality);
+        assertEquals(11, items[1].sellIn);
+        assertEquals(11, items[1].quality);
+        assertEquals(2, items[2].sellIn);
+        assertEquals(3, items[2].quality);
+        assertEquals(1, items[3].sellIn);
+        assertEquals(49, items[3].quality);
+        assertEquals(1, items[4].sellIn);
+        assertEquals(2, items[4].quality);
+    }
 }
